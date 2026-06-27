@@ -1,0 +1,12 @@
+#!name=WeTalk签到参数获取
+#!desc=WeTalk 自动签到 + 视频任务，Shadowrocket 兼容版；脚本仓库: zLinz/scripts
+
+[Script]
+WeTalk-获取参数 = type=http-request, pattern=^https:\/\/api\.wetalkapp\.com\/app\/queryBalanceAndBonus, script-path=https://raw.githubusercontent.com/zLinz/scripts/refs/heads/main/WeTalk_SR.js, requires-body=false, timeout=60
+
+WeTalk-签到任务 = type=cron, cronexp="28 8,20 * * *", script-path=https://raw.githubusercontent.com/zLinz/scripts/refs/heads/main/WeTalk_SR.js, timeout=300
+
+WeTalk-导出账号 = type=http-request, pattern=^https:\/\/example\.com\/export-wetalk$, script-path=https://raw.githubusercontent.com/zLinz/scripts/refs/heads/main/export_wetalk_sr.js, requires-body=false, timeout=30
+
+[MITM]
+hostname = %APPEND% api.wetalkapp.com
